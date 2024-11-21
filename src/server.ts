@@ -22,6 +22,16 @@ app.post('/login', (req: Request, res: Response) => {
 })
 
 
+app.post('/dashboard', (req: Request, res: Response) => {
+  if (!req.session.user) {
+    res.status(401).json({ message: "Faça login para continuar." });
+  }
+
+  console.log('acessou o dashboard, ', req.session);
+  res.status(200).json({ message: 'Dashboard de compras.' });
+});
+
+
 app.listen(port, () => {
   console.log(`servidor: online`);
 });
